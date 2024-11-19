@@ -1,7 +1,11 @@
 <?php
-require_once 'layout/header.php';
-require_once 'layout/sidebar.php';
+include 'layout/header.php';
+include 'layout/sidebar.php';
+
+$jobModel = new Job();
+$jobs = $jobModel->getAllJobs();
 ?>
+
 
 <main class="main-content">
     <h1>Available Jobs</h1>
