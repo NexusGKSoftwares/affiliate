@@ -27,6 +27,18 @@ class Transaction {
         $stmt->execute([$userId]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    public static function getTransactionsByUser($userId) {
+        global $pdo;
+        $stmt = $pdo->prepare("SELECT * FROM transactions WHERE user_id = ?");
+        $stmt->execute([$userId]);
+        return $stmt->fetchAll();
+    }
+
+    public static function addTransaction($data) {
+        global $pdo;
+        $stmt = $pdo->prepare("INSERT INTO transactions (user_id, amount, type) VALUES (?, ?, ?)");
+        $stmt->execute([$data['user_id'], $data['amount'], $data['type']]);
+    }
 }
 ?>
 
