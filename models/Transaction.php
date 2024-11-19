@@ -8,7 +8,38 @@ class Transaction {
         global $pdo;
         $this->db = $pdo;
     }
+        // Create a new transaction
+    public function create($userId, $amount, $type)
+    {
+        $stmt = $this->db->prepare("INSERT INTO transactions (user_id, amount, type, created_at) VALUES (?, ?, ?, NOW())");
+        return $stmt->execute([$userId, $amount, $type]);
+    }
+      // Fetch all transactions for a user
+    public function getByUserId($userId)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM transactions WHERE user_id = ? ORDER BY created_at DESC");
+        $stmt->execute([$userId]);
+        return $stmt->fetchAll();
+    }
 
+    // Get account balance for a user
+    public function getBalance($userId)
+    {
+        $stmt = $this->db->prepare("
+            SELECT 
+                SUM(CASE WHEN type = 'deposit' THEN amount ELSE 0 END) AS total_deposit,
+                SUM(CASE WHEN type = 'withdrawal' THEN amount ELSE 0 END) AS total_withdrawal
+            FROM transactions
+            WHERE user_id = ?
+        ");
+        $stmt->execute([$userId]);
+        $result = $stmt->fetch();
+
+        $totalDeposit = $result['total_deposit'] ?? 0;
+        $totalWithdrawal = $result['total_withdrawal'] ?? 0;
+
+        return $totalDeposit - $totalWithdrawal;
+    }
     public function getTotalDeposits($userId) {
         $stmt = $this->db->prepare("SELECT SUM(amount) as total FROM transactions WHERE user_id = ? AND type = 'deposit'");
         $stmt->execute([$userId]);
