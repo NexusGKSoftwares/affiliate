@@ -20,8 +20,11 @@ CREATE TABLE jobs (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     description TEXT NOT NULL,
-    date_posted TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    salary DECIMAL(10, 2) NOT NULL,
+    location VARCHAR(255) NOT NULL,
+    status ENUM('active', 'closed') DEFAULT 'active'
 );
+
 
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
