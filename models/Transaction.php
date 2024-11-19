@@ -22,5 +22,11 @@ class Transaction {
         $result = $stmt->fetch();
         return $result['total'] ?? 0;
     }
+    public function getTransactionHistory($userId) {
+        $stmt = $this->db->prepare("SELECT * FROM transactions WHERE user_id = ? ORDER BY date DESC");
+        $stmt->execute([$userId]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 ?>
+
