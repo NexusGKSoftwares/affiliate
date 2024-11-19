@@ -1,22 +1,26 @@
 <?php
-include 'layout/header.php';
-include 'layout/sidebar.php';
-
-$jobModel = new Job();
-$jobs = $jobModel->getAllJobs();
+require_once 'layout/header.php';
+require_once 'layout/sidebar.php';
 ?>
 
-<div class="container">
-    <h1>Job Postings</h1>
-    <div class="job-list">
-        <?php foreach ($jobs as $job): ?>
-            <div class="job">
-                <h2><?= $job['title'] ?></h2>
-                <p><?= $job['description'] ?></p>
-                <small>Posted on: <?= $job['date_posted'] ?></small>
-            </div>
-        <?php endforeach; ?>
-    </div>
-</div>
+<main class="main-content">
+    <h1>Available Jobs</h1>
+    <ul class="job-list">
+        <li>
+            <h3>Freelance Graphic Designer</h3>
+            <p>Location: Remote</p>
+            <p>Pay: $300</p>
+            <button>Apply</button>
+        </li>
+        <li>
+            <h3>Social Media Manager</h3>
+            <p>Location: Remote</p>
+            <p>Pay: $500</p>
+            <button>Apply</button>
+        </li>
+    </ul>
+</main>
 
-<?php include 'layout/footer.php'; ?>
+<?php
+require_once 'layout/footer.php';
+?>
