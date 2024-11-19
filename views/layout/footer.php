@@ -1,6 +1,9 @@
 <footer>
-    <p>&copy; <?= date('Y') ?> <?= SITE_NAME ?></p>
+    <div class="footer-container">
+        <p>&copy; <?php echo date("Y"); ?> Online Marketing System. All Rights Reserved.</p>
+        <p>Developed by NexusGK Softwares</p>
+    </div>
 </footer>
-<script src="<?= BASE_URL ?>assets/js/script.js"></script>
 </body>
+<script src="assets/js/script.js"></script>
 </html>
