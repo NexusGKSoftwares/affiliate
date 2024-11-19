@@ -3,7 +3,7 @@ include 'layout/header.php';
 include 'layout/sidebar.php';
 
 $jobModel = new Job();
-$jobs = $jobModel->getAllJobs();
+$jobs = $jobModel->getActiveJobs();
 ?>
 
 
