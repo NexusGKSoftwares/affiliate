@@ -7,3 +7,11 @@ CREATE TABLE trivia_questions (
     option_d VARCHAR(255) NOT NULL,
     correct_option CHAR(1) NOT NULL
 );
+
+CREATE TABLE transactions (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    type ENUM('deposit', 'withdrawal') NOT NULL,
+    amount DECIMAL(10, 2) NOT NULL,
+    date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
