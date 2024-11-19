@@ -1,6 +1,9 @@
 <?php
-require_once 'layout/header.php';
-require_once 'layout/sidebar.php';
+include 'layout/header.php';
+include 'layout/sidebar.php';
+
+$dashboardController = new DashboardController();
+$data = $dashboardController->getDashboardData($userId);
 ?>
 
 <main class="main-content">
