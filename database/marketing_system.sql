@@ -11,10 +11,12 @@ CREATE TABLE trivia_questions (
 CREATE TABLE transactions (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
-    type ENUM('deposit', 'withdrawal') NOT NULL,
     amount DECIMAL(10, 2) NOT NULL,
-    date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    type ENUM('deposit', 'withdrawal') NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id)
 );
+
 
 CREATE TABLE jobs (
     id INT AUTO_INCREMENT PRIMARY KEY,
