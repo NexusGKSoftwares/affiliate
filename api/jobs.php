@@ -1,5 +1,11 @@
 <?php
 include '../config/database.php';
+include '../controllers/JobController.php';
+
+$jobController = new JobController($pdo);
+$activeJobs = $jobController->getActiveJobs();
+echo json_encode($activeJobs);
+
 header('Content-Type: application/json');
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
