@@ -14,10 +14,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 ?>
-<form action="register.php" method="POST">
-    <h2>Register</h2>
-    <input type="text" name="username" placeholder="Username" required>
-    <input type="email" name="email" placeholder="Email" required>
-    <input type="password" name="password" placeholder="Password" required>
-    <button type="submit">Register</button>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <div class="auth-container">
+        <h1>Register</h1>
+        <form action="controllers/UserController.php" method="POST">
+            <input type="hidden" name="action" value="register">
+            <div>
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div>
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">Register</button>
+        </form>
+        <p>Already have an account? <a href="login.php">Login</a></p>
+    </div>
+</body>
+</html>
